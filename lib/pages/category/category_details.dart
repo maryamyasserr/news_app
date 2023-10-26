@@ -1,12 +1,23 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/models/CategoryFragment.dart';
 import 'package:news_app/models/SourceResponse.dart';
+import 'package:news_app/pages/category/tab_widget.dart';
 import 'package:news_app/pages/home/widgets/custom_drawer.dart';
 
-class CategoryDetails extends StatelessWidget {
+class CategoryDetails extends StatefulWidget {
+  CategoryFragmentData category;
   static const String routeName = 'categoryDetails';
-  const CategoryDetails({super.key});
+  CategoryDetails({super.key,
+  required this.category
+  });
 
+  @override
+  State<CategoryDetails> createState() => _CategoryDetailsState();
+}
+
+class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -16,16 +27,8 @@ class CategoryDetails extends StatelessWidget {
         image: DecorationImage(
             image: AssetImage('assets/images/pattern.png'), fit: BoxFit.cover),
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: Text(
-            'News App',
-            style: theme.textTheme.titleLarge,
-          ),
-        ),
-        body: FutureBuilder<SourceResponse?>(
-            future: ApiManager.getSources(),
+        child : FutureBuilder<SourceResponse?>(
+            future: ApiManager.getSources(widget.category.id),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
@@ -37,7 +40,9 @@ class CategoryDetails extends StatelessWidget {
                 return Column(
                   children: [
                     Text('Something went wrong'),
-                    ElevatedButton(onPressed: () {}, child: Text('Try again'))
+                    ElevatedButton(onPressed: () {
+                      ApiManager.getSources(widget.category.id);
+                    }, child: Text('Try again'))
                   ],
                 );
               }
@@ -51,18 +56,9 @@ class CategoryDetails extends StatelessWidget {
                 );
               }
               var sourceList = snapshot.data?.sources ?? [];
-              return ListView.builder(itemBuilder: (context , index){
-                     return Text(sourceList[index].name ?? '',
-                     style: TextStyle(
-                       color: Colors.black
-                     ),
-                     );
-              },
-              itemCount: sourceList.length,
-              );
+              return TabWidget(sourcesList: sourceList);
             }),
-        drawer: CustomDrawer(),
-      ),
+
     );
   }
 }
