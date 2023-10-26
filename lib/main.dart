@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/pages/category/category_details.dart';
 import 'package:news_app/pages/home/home_view.dart';
 import 'package:news_app/pages/settings/settings_view.dart';
 import 'package:news_app/pages/splash/splash_view.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: SplashView.routeName,
+      initialRoute: HomeView.routeName,
       routes: {
         SplashView.routeName : (context) => SplashView(),
         HomeView.routeName : (context) => HomeView(),
