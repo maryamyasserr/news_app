@@ -50,5 +50,14 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: const Color(0xff42505C),
         ),
-      ));
+      ),
+    inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide:BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide:BorderSide.none,
+      ),
+  )
+  );
 }
