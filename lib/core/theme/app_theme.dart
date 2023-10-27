@@ -46,7 +46,7 @@ class AppTheme {
           color: whiteColor,
         ),
         bodySmall: GoogleFonts.poppins(
-          fontSize: 16,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
           color: const Color(0xff42505C),
         ),

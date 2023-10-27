@@ -31,6 +31,7 @@ class CategoryItem extends StatelessWidget {
           const SizedBox(height: 5),
           Text(categoryFragment.title,
           style: theme.textTheme.bodyLarge!.copyWith(
+            fontSize: 21,
             color: Colors.white
           ),
           ),
