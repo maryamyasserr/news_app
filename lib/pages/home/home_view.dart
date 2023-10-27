@@ -3,6 +3,7 @@ import 'package:news_app/models/CategoryFragment.dart';
 import 'package:news_app/pages/category/category_details.dart';
 import 'package:news_app/pages/home/widgets/category_fragment.dart';
 import 'package:news_app/pages/home/widgets/custom_drawer.dart';
+import 'package:news_app/pages/search/search_view.dart';
 import 'package:news_app/pages/settings/settings_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -36,6 +37,22 @@ class _HomeViewState extends State<HomeView> {
                     : selectedCategory!.title ,
               style: theme.textTheme.titleLarge,
               ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: InkWell(
+                    onTap: (){
+                      showSearch(
+                          context: context,
+                          delegate: SearchView());
+                    },
+                    child: Icon(Icons.search,
+                    size: 30,
+
+                    ),
+                  ),
+                )
+              ],
             ),
             body: selectedDrawer == CustomDrawer.settingsId
                 ? SettingsView()
