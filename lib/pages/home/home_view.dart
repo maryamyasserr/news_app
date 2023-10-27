@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
                 image: AssetImage('assets/images/pattern.png'),
